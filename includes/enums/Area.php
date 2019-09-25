@@ -2,7 +2,7 @@ abstract class Area {
     const AREA_PL = "Port Louis";
     const AREA_BR = "Black River";
     const AREA_PP = "Pamplemousses";
-    const AREA_RR = "Riviere du Rampart";
+    const AREA_RR = "Rivière du Rempart";
     const AREA_FQ = "Flacq";
     const AREA_GP = "Grand Port";
     const AREA_SC = "Souillac";
