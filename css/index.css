@@ -1,0 +1,133 @@
+body {
+
+    /* Background Settings */
+    background-image: url(../resources/Wallpaper_8K_0_7680x4320.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: repeat-y;
+    margin-bottom: 30px;
+    /* Font Setting */
+    font-family: "Lato", sans-serif;
+}
+
+.instagram {
+    position: absolute;
+    margin-left: 0px;
+    left: 2%;
+    top: 2%;
+}
+
+.card-header {
+    border-bottom: none;
+}
+
+.logo-small {
+    float: right
+}
+
+.form-check {
+    margin-top: -8%;
+}
+
+
+/* Extra small devices (portrait phones, less than 576px)*/
+
+@media (max-width: 359.98px) {
+    body {
+        background-image: url(../resources/d81dc0d64429c915323ee767e93eb52f.jpg);
+    }
+    .loginCard {
+        margin-top: 45%;
+        margin-left: 1%;
+        width: 100%;
+        margin-bottom: 25%;
+    }
+    .form-check {
+        margin-top: -12%;
+        margin-left: 45%;
+    }
+
+}
+
+@media (min-width: 360px) and (max-width: 575.98px) {
+    body {
+        /* Background Settings */
+        background-image: url(../resources/Digital-Universe-Mountains-Wallpaper-720x1280.jpg);
+    }
+    .loginCard {
+        margin-top: 45%;
+        margin-left: 1%;
+        width: 100%;
+        margin-bottom: 25%;
+    }
+    .form-check {
+        margin-left: 55%;
+    }
+
+}
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    body {
+        background-image: url(../resources/surface_texture_stains_background_50906_5000x3690.jpg);
+    }
+    .loginCard {
+        margin-top: 35%;
+        margin-left: 10%;
+        width: 80%;
+        margin-bottom: 25%;
+    }
+    .form-check {
+        margin-left: 65%;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    body {
+        background-image: url(../resources/mountains_summer_lake_trees_forest_95632_3840x2400.jpg);
+    }
+    .loginCard {
+        margin-top: 30%;
+        margin-left: 20%;
+        width: 60%;
+        margin-bottom: 15%;
+    }
+    .form-check {
+        margin-left: 65%;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    body {
+        background-image: url(../resources/winter_spruce_branches_snow_glare_99412_3840x2400.jpg);
+    }
+    .loginCard {
+        margin-left: 27%;
+        width: 45%;
+        margin-bottom: 15%;
+        margin-top: 15%;
+    }
+    .form-check {
+        margin-left: 65%;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+    .loginCard {
+        margin-left: 30%;
+        width: 40%;
+        margin-bottom: 10%;
+        margin-top: 15%;
+    }
+    .form-check {
+        margin-left: 60%;
+    }
+}

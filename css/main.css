@@ -1,0 +1,26 @@
+@font-face {
+    font-family: FreightSans;
+    src: url("font/FreightSansMedium.otf");
+}
+
+@font-face {
+    font-family: HelveticaNeue;
+    src: url("font/HelveticaNeue Medium.ttf");
+}
+
+.head-logo {
+    margin-top: -6px
+}
+
+.navbar-brand {
+    font-family: FreightSans;
+}
+
+.img-thumbnail { /* Footer Logo */
+    width: 50px;
+    margin-top: -13px;
+}
+
+footer div div small a:hover {
+    text-decoration: none;
+}
