@@ -1,7 +1,7 @@
 <?php
 require_once "../includes/component.php";
 require_once "../includes/class_user.php";
-
+/*
 #Session Management 
 #Timestamp->30 minutes
 if (isset($_SESSION['logged_user'])) {
@@ -19,6 +19,7 @@ if (isset($_SESSION['logged_user'])) {
 } else {
   header("location: ../"); #Login Page!
 }
+*/
 ?>
 
 <!DOCTYPE html>

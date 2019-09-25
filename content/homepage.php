@@ -3,7 +3,7 @@ require_once "../includes/class_user.php";
 
 #Session Management 
 #Timestamp->30 minutes
-
+/*
 if (isset($_SESSION['logged_user'])) {
     $date = date_create();
     $timestamp = date_timestamp_get($date);
@@ -26,3 +26,5 @@ $ex = json_decode($_SESSION['logged_user']->toJson());
 echo json_encode($ex);
 
 //$_SESSION['logged_user']->logout();
+
+*/

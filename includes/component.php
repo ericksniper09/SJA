@@ -38,14 +38,17 @@ function add_footer($page_name) {
             </div>
         </div>
         </div>
-        <script src="../../vendor/jquery/jquery.min.js"></script>
-        <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
-        <script src="../../vendor/datatables/jquery.dataTables.js"></script>
-        <script src="../../vendor/datatables/dataTables.bootstrap4.js"></script>
+        <script src="https://olivierdefoix.ddns.net/myVendorApps/jquery/jquery-core/jquery.js"></script>
+        <script src="https://olivierdefoix.ddns.net/myVendorApps/bootstrap/bootstrap-core-4.1.3/js/bootstrap.bundle.js"></script>
+        <script src="https://olivierdefoix.ddns.net/myVendorApps/jquery/jquery-easing/jquery.easing.min.js"></script>
+        <script src="https://olivierdefoix.ddns.net/myVendorApps/bootstrap/datatables-1.10/js/jquery.dataTables.js"></script>
+        <script src="https://olivierdefoix.ddns.net/myVendorApps/bootstrap/datatables-1.10/js/datatables.js"></script>
+        <script src="https://olivierdefoix.ddns.net/myVendorApps/bootstrap/bootstrap-core-4.1.3/js/popper.js"></script>
+        <script src="https://olivierdefoix.ddns.net/myVendorApps/bootstrap/bootstrap-core-4.1.3/js/bootstrap.js"></script>
+        <script src="https://olivierdefoix.ddns.net/myVendorApps/bootstrap/notify-3.1.5/bootstrap-notify.js"></script>
+        <script src="https://olivierdefoix.ddns.net/myVendorApps/DefoixTrademark/js/logo.js"></script>
         <script src="../js/sb-admin.js"></script>
         <script src="../js/jsController.js"></script>';
-
 }
 
 function add_head($page_name) {
@@ -75,12 +78,14 @@ function add_head($page_name) {
         <meta name="msapplication-TileImage" content="ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
 
-        <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../vendor/font-awesome/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-        <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="../../vendor/fontawesome/css/all.css">
-        <link rel="stylesheet" href="../../vendor/fontawesome/css/fontawesome.css">
-        <link href="../../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://olivierdefoix.ddns.net/myVendorApps/bootstrap/bootstrap-core-4.1.3/css/bootstrap.css">
+        <link href="https://olivierdefoix.ddns.net/myVendorApps/font-awesome/font-awesome-5.0.12/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+        <link href="https://olivierdefoix.ddns.net/myVendorApps/font-awesome/font-awesome-5.0.12/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="https://olivierdefoix.ddns.net/myVendorApps/font-awesome/font-awesome-5.8.1/css/all.css">
+        <link rel="stylesheet" href="https://olivierdefoix.ddns.net/myVendorApps/font-awesome/font-awesome-5.8.1/css/fontawesome.css">
+        <link href="https://olivierdefoix.ddns.net/myVendorApps/bootstrap/datatables-1.10/css/dataTables.bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://olivierdefoix.ddns.net/myVendorApps/just-add-water/animate.css">
+        <link rel="stylesheet" type="text/css" href="https://olivierdefoix.ddns.net/myVendorApps/DefoixTrademark/css/logo.css">
         <link href="../css/sb-admin.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../css/main.css">
     </head>';

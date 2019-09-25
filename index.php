@@ -34,7 +34,7 @@ if (isset($_SESSION['logged_user'])) {
     <link rel="stylesheet" href="https://olivierdefoix.ddns.net/myVendorApps/bootstrap/bootstrap-core-4.1.3/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="https://olivierdefoix.ddns.net/myVendorApps/font-awesome/font-awesome-5.8.1/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://olivierdefoix.ddns.net/myVendorApps/font-awesome/font-awesome-pro-5.11.1/css/all.css">
     <link rel="stylesheet" type="text/css" href="https://olivierdefoix.ddns.net/myVendorApps/fonts/googleFont/googleFonts.css">
     <link rel="stylesheet" type="text/css" href="https://olivierdefoix.ddns.net/myVendorApps/just-add-water/animate.css">
     <link rel="stylesheet" type="text/css" href="https://olivierdefoix.ddns.net/myVendorApps/DefoixTrademark/css/logo.css">
@@ -107,6 +107,7 @@ if (isset($_SESSION['logged_user'])) {
     <script src="https://olivierdefoix.ddns.net/myVendorApps/bootstrap/bootstrap-core-4.1.3/js/bootstrap.bundle.js"></script>
     <script src="https://olivierdefoix.ddns.net/myVendorApps/password-validator/zxcvbn.js"></script>
     <script src="https://olivierdefoix.ddns.net/myVendorApps/bootstrap/notify-3.1.5/bootstrap-notify.js"></script>
+    <script src="https://olivierdefoix.ddns.net/myVendorApps/font-awesome/font-awesome-pro-5.11.1/js/all.js"></script>
     <script src="https://olivierdefoix.ddns.net/myVendorApps/DefoixTrademark/js/logo.js"></script>
     <script src="js/index.js"></script>
 </footer>
