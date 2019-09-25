@@ -1,6 +1,6 @@
 <?php
-require_once "../includes/component.php";
-require_once "../includes/class_user.php";
+require_once "../includes/helper/component.php";
+require_once "../includes/entity/class_user.php";
 /*
 #Session Management 
 #Timestamp->30 minutes
