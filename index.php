@@ -31,13 +31,13 @@ if (isset($_SESSION['logged_user'])) {
 
     <title>Bolt Manager - St John Ambulance</title>
 
-    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="https://olivierdefoix.ddns.net/myVendorApps/bootstrap/bootstrap-core-4.1.3/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="../vendor/fontawesome/css/all.css">
-    <link rel="stylesheet" type="text/css" href="../vendor/googleFont/googleFonts.css">
-    <link rel="stylesheet" type="text/css" href="../vendor/just-add-water/animate.css">
-    <link rel="stylesheet" type="text/css" href="../vendor/DefoixTrademark/css/logo.css">
+    <link rel="stylesheet" type="text/css" href="https://olivierdefoix.ddns.net/myVendorApps/font-awesome/font-awesome-5.8.1/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://olivierdefoix.ddns.net/myVendorApps/fonts/googleFont/googleFonts.css">
+    <link rel="stylesheet" type="text/css" href="https://olivierdefoix.ddns.net/myVendorApps/just-add-water/animate.css">
+    <link rel="stylesheet" type="text/css" href="https://olivierdefoix.ddns.net/myVendorApps/DefoixTrademark/css/logo.css">
 
     <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
@@ -100,14 +100,14 @@ if (isset($_SESSION['logged_user'])) {
 </body>
 
 <footer>
-    <script src="../vendor/jquery/jquery.js"></script>
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="../vendor/bootstrap/js/popper.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="../vendor/password-validator/zxcvbn.js"></script>
-    <script src="../vendor/growl-notify/bootstrap-notify.js"></script>
-    <script src="../vendor/DefoixTrademark/js/logo.js"></script>
+    <script src="https://olivierdefoix.ddns.net/myVendorApps/jquery/jquery-core/jquery.js"></script>
+    <script src="https://olivierdefoix.ddns.net/myVendorApps/jquery/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://olivierdefoix.ddns.net/myVendorApps/bootstrap/bootstrap-core-4.1.3/js/popper.js"></script>
+    <script src="https://olivierdefoix.ddns.net/myVendorApps/bootstrap/bootstrap-core-4.1.3/js/bootstrap.js"></script>
+    <script src="https://olivierdefoix.ddns.net/myVendorApps/bootstrap/bootstrap-core-4.1.3/js/bootstrap.bundle.js"></script>
+    <script src="https://olivierdefoix.ddns.net/myVendorApps/password-validator/zxcvbn.js"></script>
+    <script src="https://olivierdefoix.ddns.net/myVendorApps/bootstrap/notify-3.1.5/bootstrap-notify.js"></script>
+    <script src="https://olivierdefoix.ddns.net/myVendorApps/DefoixTrademark/js/logo.js"></script>
     <script src="js/index.js"></script>
 </footer>
 
