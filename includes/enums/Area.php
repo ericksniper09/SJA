@@ -1,3 +1,4 @@
+<?php
 abstract class Area {
     const AREA_PL = "Port Louis";
     const AREA_BR = "Black River";

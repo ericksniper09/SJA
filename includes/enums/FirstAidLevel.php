@@ -1,3 +1,4 @@
+<?php
 abstract class FirstAidLevel {
     const LEVEL_FULL  = "Full First Aid";
     const LEVEL_ESSENTIAL = "Essential First Aid";

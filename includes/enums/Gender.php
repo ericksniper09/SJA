@@ -1,3 +1,4 @@
+<?php
 abstract class Gender {
     const SEX_M = "Male";
     const SEX_F = "Female";

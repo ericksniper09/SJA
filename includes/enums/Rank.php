@@ -1,3 +1,4 @@
+<?php
 abstract class Rank {
     const RANK_CM = "Cadet";
     const RANK_AM = "Adult";
