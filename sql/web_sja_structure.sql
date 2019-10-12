@@ -1,3 +1,5 @@
+drop view if exists valid_members;
+
 drop database if exists web_sja;
 create database if not exists web_sja;
 
@@ -47,7 +49,7 @@ create table sja_address (
   ADDRESS_CITY varchar(50) not null,
   ADDRESS_STATE varchar(50) not null,
   ADDRESS_COUNTRY varchar(50) not null,
-  ADDRESS_POSTAL_CODE text null,
+  ADDRESS_POSTAL_CODE varchar(6) null,
   constraint PK_ADDRESS_ID primary key (ADDRESS_ID),
   constraint AK_ADDRESS unique key (ADDRESS_HOUSE_NO, ADDRESS_STREET, ADDRESS_CITY, ADDRESS_STATE, ADDRESS_COUNTRY)
 );
@@ -61,14 +63,14 @@ create table sja_division (
 
 create table sja_member (
 	MEMBER_NIC varchar(14) not null,
-	MEMBER_FIRST_NAME text not null,
-	MEMBER_MIDDLE_NAME text null,
-	MEMBER_MAIDEN_NAME text null,
-	MEMBER_LAST_NAME text not null,
+	MEMBER_FIRST_NAME varchar(25) not null,
+	MEMBER_MIDDLE_NAME varchar(30) null,
+	MEMBER_MAIDEN_NAME varchar(25) null,
+	MEMBER_LAST_NAME varchar(30) not null,
 	MEMBER_DOB date not null,
-	MEMBER_EMAIL text null,
-	MEMBER_HOME_PHONE text null,
-	MEMBER_MOBILE_PHONE text null,
+	MEMBER_EMAIL varchar(30) null,
+	MEMBER_HOME_PHONE varchar(7) null,
+	MEMBER_MOBILE_PHONE varchar(8) null,
 	MEMBER_ADDRESS int not null,
 	MEMBER_GENDER varchar(11) not null,
 	MEMBER_IMAGE longblob null,
@@ -113,7 +115,7 @@ create table sja_first_aider (
 create table admin_user (
 	USER_NAME varchar(6) not null,
 	USER_PWD text not null,
-	MEMBER_ID varchar(14) not null,
+	MEMBER_ID varchar(14) null,
 	ACCOUNT_STATUS varchar(9) not null,
 	CREATED_BY varchar(6) null,
 	constraint PK_USER_USER_NAME primary key (USER_NAME),
@@ -133,6 +135,4 @@ add constraint FK_FIRST_AIDER_MODIFIED_BY foreign key (MODIFIED_BY) references a
 /*
 # Duty Table
 # Joined Duty && Member Table 
-# sja statut --> Active, Dormant, Suspended, Retired, Resigned
-# admin statut --> enabled, disabled, suspended, pending
 */
