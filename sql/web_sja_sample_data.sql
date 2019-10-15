@@ -1,8 +1,9 @@
 -- Sample Data!
-insert into admin_user (USER_NAME, USER_PWD, ACCOUNT_STATUS) values (
+insert into admin_user (USER_NAME, USER_PWD, ACCOUNT_STATUS, DATE_CREATED) values (
 	'ED517',
 	'Er7471447',
-	'Enabled'
+	'Enabled',
+	CURDATE()
 );
 
 insert into sja_address (
@@ -33,7 +34,8 @@ insert into sja_member (
 	MEMBER_ADDRESS,
 	MEMBER_GENDER,
 	MEMBER_OCCUPATION,
-	MEMBER_DATE_JOINED
+	MEMBER_DATE_JOINED,
+	CREATED_BY
 ) values (
 	'D090796350118F',
 	'Eric',
@@ -46,6 +48,7 @@ insert into sja_member (
 	1,
 	'MALE',
 	'EMPLOYED',
-	'2017-05-31'
+	'2017-05-31',
+	'ED517'
 );
 	

@@ -7,10 +7,10 @@
 
 class DbConnection {
     private $connection;
-    private $host = "localhost";
-    private $username = "WebsiteAdmin";
-    private $password = "QNydXMicGtLDxgOM1pXQDg";
-    private $db_name = "SJA_QBBR";
+    private static $host = "localhost";
+    private static $username = "WebsiteAdmin";
+    private static $password = "QNydXMicGtLDxgOM1pXQDg***";
+    private static $db_name = "web_sja";
 
     public function __construct() {
         try {

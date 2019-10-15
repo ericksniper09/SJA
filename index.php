@@ -1,5 +1,5 @@
 <?php
-require_once "includes/entity/class_user.php";
+require_once "coreServices/entity/class_user.php";
 #Session Management 
 #Timestamp->30 minutes
 if (isset($_SESSION['logged_user'])) {
