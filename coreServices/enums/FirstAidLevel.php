@@ -1,5 +1,10 @@
 <?php
-abstract class FirstAidLevel {
+
+namespace enumerations;
+
+include_once 'BaseEnum.php';
+
+abstract class FirstAidLevel extends BaseEnum {
     const LEVEL_FULL  = "Full First Aid";
     const LEVEL_ESSENTIAL = "Essential First Aid";
     const LEVEL_BASIC = "Basic First Aid";

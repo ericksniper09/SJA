@@ -1,5 +1,6 @@
 <?php
 
+namespace entity;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,14 +13,14 @@
  * @author ericd
  */
 
-include 'BusinessEntity.php';
-include 'Member.php';
-include '../enums/Rank.php';
-include 'Division.php';
-include '../enums/FirstAiderStatut.php';
-include 'User.php';
+include_once 'BaseEntity.php';
+include_once 'Member.php';
+include_once '../enums/Rank.php';
+include_once 'Division.php';
+include_once '../enums/FirstAiderStatut.php';
+include_once 'User.php';
 
-class FirstAider extends BusinessEntity {
+class FirstAider extends BaseEntity {
     
     /*
      * @Not-Null
@@ -65,21 +66,21 @@ class FirstAider extends BusinessEntity {
     
      /*
      * @Not-Null
-     * @One-to-one
+     * @Many-to-one
      * @ForeingKey -> Admin Table: adminId;
      */
     private $createdBy;
     
      /*
      * @Allow-Null
-     * @One-to-one
+     * @Many-to-one
      * @ForeingKey -> Admin Table: adminId;
      */
     private $validatedBy;
     
      /*
      * @Allow-Null
-     * @One-to-one
+     * @Many-to-one
      * @ForeingKey -> Admin Table: adminId;
      */
     private $modifiedby;
@@ -90,5 +91,4 @@ class FirstAider extends BusinessEntity {
     public function __toString() {
         
     }
-
 }

@@ -1,5 +1,6 @@
 <?php
 
+namespace entity;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,10 +13,10 @@
  * @author ericd
  */
 
-include '../enums/AdminStatut.php';
-include 'BusinessEntity.php';
+include_once '../enums/AdminStatut.php';
+include_once 'BaseEntity.php';
 
-class User extends BusinessEntity {
+class User extends BaseEntity {
     /*
      * @Not-Null
      * @primary key
@@ -42,7 +43,7 @@ class User extends BusinessEntity {
     private $accountStatus;
     /*
      * @Allow-Null
-     * @One-to-one
+     * @Many-to-one
      * @ForeingKey -> Member Table: memberId;
      */
     private $createdBy;

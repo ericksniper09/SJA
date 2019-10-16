@@ -1,5 +1,6 @@
 <?php
 
+namespace entity;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -7,11 +8,17 @@
  */
 
 /**
- * Business Entity to Ensure Data Redundancy
+ * Base Entity to Ensure Data Redundancy
  * 
  * @author ericd
  */
-abstract class BusinessEntity {
+abstract class BaseEntity {
+    
+    /*
+     * Object Builder;
+     */
+    public function __construct() {}
+    
     /*
      * toString Method to Print Obj;
      */

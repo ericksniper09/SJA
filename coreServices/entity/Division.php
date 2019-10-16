@@ -1,5 +1,6 @@
 <?php
 
+namespace entity;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,10 +13,10 @@
  * @author ericd
  */
 
-include 'BusinessEntity.php';
-include '../enums/Area.php';
+include_once 'BaseEntity.php';
+include_once '../enums/Area.php';
 
-class Division extends BusinessEntity {
+class Division extends BaseEntity {
     /*
      * @Not-Null
      * @primary key

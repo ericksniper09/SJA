@@ -8,55 +8,44 @@ namespace entity;
  */
 
 /**
- * Description of Address
+ * Description of Certificate
  *
  * @author ericd
  */
 
 include_once 'BaseEntity.php';
+include_once '../enums/FirstAidLevel.php';
 
-class Address extends BaseEntity {
+class Certificate extends BaseEntity {
+    
     /*
      * @Not-Null
      * @primary key
      */
     private $id;
     
-    /*
+     /*
      * @Not-Null
-     * @compound key element
+     * @Many-to-one
+     * @ForeingKey -> Member Table: memberId;
      */
-    private $houseNo;
-    
-    /*
-     * @Not-Null
-     * @compound key element
-     */
-    private $street;
+    private $memberId;
     
     /*
      * @Not-Null
-     * @compound key element
      */
-    private $city;
+    private $dateIssued;
     
     /*
      * @Not-Null
-     * @compound key element
      */
-    private $state;
+    private $dateExpiry;
     
-    /*
+     /*
      * @Not-Null
-     * @compound key element
+     * @Enum FirstAidLevel
      */
-    private $country;
-    
-    /*
-     * Allow-Null
-     */
-    private $postalCode;
-    
+    private $level;
     /*
      * Inherited
      */

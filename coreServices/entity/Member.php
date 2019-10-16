@@ -1,5 +1,6 @@
 <?php
 
+namespace entity;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,15 +9,15 @@
 
 /**
  * Description of Member
- *
+ * 
  * @author ericd
  */
-include 'BusinessEntity.php';
-include 'User.php';
-include 'Address.php';
-include '../enums/Gender.php';
+include_once 'BaseEntity.php';
+include_once 'User.php';
+include_once 'Address.php';
+include_once '../enums/Gender.php';
 
-class Member extends BusinessEntity {
+class Member extends BaseEntity {
     /*
      * @Not-Null
      * @primary key
@@ -94,7 +95,7 @@ class Member extends BusinessEntity {
     
     /*
      * @Not-Null
-     * @One-to-one
+     * @Many-to-one
      * @ForeingKey -> Admin Table: adminId;
      */
     private $createdBy;

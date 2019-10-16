@@ -6,12 +6,16 @@
  * and open the template in the editor.
  */
 
+namespace enumerations;
+
+include_once 'BaseEnum.php';
+
 /**
  * Description of FirstAiderStatut
  *
  * @author ericd
  */
-abstract class FirstAiderStatut {
+abstract class FirstAiderStatut extends BaseEnum {
     const STATUT_ACTIVE = "Active";
     const STATUT_DORMANT = "Dormant";
     const STATUT_RESIGNED = "Resigned";

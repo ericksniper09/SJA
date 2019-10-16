@@ -1,5 +1,10 @@
 <?php
-abstract class Area {
+
+namespace enumerations;
+
+include_once 'BaseEnum.php';
+
+abstract class Area extends BaseEnum {
     const AREA_PL = "Port Louis";
     const AREA_BR = "Black River";
     const AREA_PP = "Pamplemousses";

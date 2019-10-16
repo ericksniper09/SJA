@@ -1,5 +1,10 @@
 <?php
-abstract class Rank {
+
+namespace enumerations;
+
+include_once 'BaseEnum.php';
+
+abstract class Rank extends BaseEnum {
     const RANK_CM = "Cadet";
     const RANK_AM = "Adult";
     const RANK_CP = "Caporal";
