@@ -33,8 +33,9 @@ class DivisionRepository implements BaseRepository{
         $divisionId = $entity->id;
         $divisionArea = $entity->area;
 
-        $query = "select * from sja_division where DIVISION_NAME = '$divisionId' and AREA_NAME = '$divisionArea'";
-        $result = \mysqli_query($conn->connection, $query);
+
+        $query = 'select * from sja_division where DIVISION_NAME = "$divisionId" and AREA_NAME = "$divisionArea";';
+        /*$result = \mysqli_query($conn->connection, $query);
 
         $divisionSJA = new \entity\Division();
         if (\mysqli_num_rows($result) == 1) {
@@ -45,7 +46,9 @@ class DivisionRepository implements BaseRepository{
 
           \mysqli_close($conn->connection);
         }
-        return $divisionSJA;
+        return $divisionSJA;*/
+        echo $query;
+        return array("DIVISION_NAME" => "$divisionId", "DIVISION_AREA" => "$divisionArea");
     }
 
     public function save($entity): int {
