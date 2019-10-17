@@ -16,8 +16,9 @@ include_once 'BaseEntity.php';
 include_once 'User.php';
 include_once 'Address.php';
 include_once '../enums/Gender.php';
+include_once '../enums/Occupation.php';
 
-class Member extends BaseEntity {
+class Member implements BaseEntity {
     /*
      * @Not-Null
      * @primary key
@@ -91,7 +92,7 @@ class Member extends BaseEntity {
     /*
      * @Not-Null
      */
-    private $datejoined;
+    private $dateJoined;
     
     /*
      * @Not-Null
@@ -103,7 +104,29 @@ class Member extends BaseEntity {
     /*
      * Inherited
      */
+    public function __construct() {
+    }
+    
+    /*
+     * Inherited
+     */
+    public function __get($name) {
+        return $this->$name;
+    }
+    
+    /*
+     * Inherited
+     */
+    public function __set($name, $val) {
+        $this->$name = $val;
+    }
+    
+    /*
+     * Inherited
+     */
     public function __toString() {
-        
+        return "$this->firstname, $this->middlename, $this->maidenName, $this->lastname, $this->dob, $this->email, "
+            . "$this->mobilePhone, $this->homePhone, $this->address, $this->gender, $this->image, $this->occupation, "
+            . "$this->dateJoined, $this->createdBy";
     }
 }

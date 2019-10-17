@@ -13,10 +13,12 @@ namespace entity;
  * @author ericd
  */
 
-include_once '../enums/AdminStatut.php';
 include_once 'BaseEntity.php';
+include_once 'Member.php';
 
-class User extends BaseEntity {
+include_once '../enums/AdminStatut.php';
+
+class User implements BaseEntity {
     /*
      * @Not-Null
      * @primary key
@@ -44,7 +46,7 @@ class User extends BaseEntity {
     /*
      * @Allow-Null
      * @Many-to-one
-     * @ForeingKey -> Member Table: memberId;
+     * @ForeingKey -> Admin Table: adminId;
      */
     private $createdBy;
     
@@ -52,12 +54,32 @@ class User extends BaseEntity {
      * @Not-Null
      */
     private $dateCreated;
-   
+    
+    /*
+     * Inherited
+     */
+    public function __construct() {
+    }
+    
+    /*
+     * Inherited
+     */
+    public function __get($name) {
+        return $this->$name;
+    }
+    
+    /*
+     * Inherited
+     */
+    public function __set($name, $val) {
+        $this->$name = $val;
+    }
+    
     /*
      * Inherited
      */
     public function __toString() {
-        
+        return "$this->id, $this->pwd, $this->memberId, $this->accountStatus, $this->dateCreated, $this->createdBy";
     }
 
 }

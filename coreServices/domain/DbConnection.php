@@ -1,5 +1,6 @@
 <?php
 
+namespace domain;
 # DbConnection Class
 # MySql Database Connection
 # Author: Eric Defoix

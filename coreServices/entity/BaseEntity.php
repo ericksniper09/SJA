@@ -12,26 +12,24 @@ namespace entity;
  * 
  * @author ericd
  */
-abstract class BaseEntity {
+interface BaseEntity {
     
     /*
      * Object Builder;
      */
-    public function __construct() {}
+    public function __construct();
     
     /*
      * toString Method to Print Obj;
      */
-    public abstract function __toString();
+    public function __toString();
     
     /*
      * Actuator Method
      * 
      * @param $name
      */
-    public function __get($name) {
-        return $this->$name;
-    }
+    public function __get($name);
     
     /*
      * Mutator Method
@@ -39,7 +37,5 @@ abstract class BaseEntity {
      * @param $name
      * @param $val
      */
-    public function __set($name, $val) {
-        $this->$name = $val;
-    }
+    public function __set($name, $val);
 }

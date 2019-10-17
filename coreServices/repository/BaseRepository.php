@@ -14,6 +14,8 @@ namespace repository;
  * @author ericd
  */
 
+include_once '../entity/BaseEntity.php';
+
 interface BaseRepository {
     
     /*

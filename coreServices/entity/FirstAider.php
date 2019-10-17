@@ -20,11 +20,12 @@ include_once 'Division.php';
 include_once '../enums/FirstAiderStatut.php';
 include_once 'User.php';
 
-class FirstAider extends BaseEntity {
+class FirstAider implements BaseEntity {
     
     /*
      * @Not-Null
      * @primary key
+     * Integer
      */
     private $id;
     
@@ -32,6 +33,7 @@ class FirstAider extends BaseEntity {
      * @Not-Null
      * @One-to-one
      * @ForeingKey -> Member Table: memberId;
+     * String
      */
     private $memberId;
     
@@ -45,6 +47,7 @@ class FirstAider extends BaseEntity {
      * @Not-Null
      * @One-to-one
      * @ForeingKey -> Division Table: divisionId;
+     * Division / Integer
      */
     private $division;
     
@@ -56,11 +59,13 @@ class FirstAider extends BaseEntity {
     
     /*
      * @Not-Null
+     * Date
      */
     private $dateVersionStatut;
     
     /*
      * @Not-Null
+     * Date
      */
     private $dateEnrollment;
     
@@ -68,6 +73,7 @@ class FirstAider extends BaseEntity {
      * @Not-Null
      * @Many-to-one
      * @ForeingKey -> Admin Table: adminId;
+     * String
      */
     private $createdBy;
     
@@ -75,6 +81,7 @@ class FirstAider extends BaseEntity {
      * @Allow-Null
      * @Many-to-one
      * @ForeingKey -> Admin Table: adminId;
+     * String
      */
     private $validatedBy;
     
@@ -82,13 +89,35 @@ class FirstAider extends BaseEntity {
      * @Allow-Null
      * @Many-to-one
      * @ForeingKey -> Admin Table: adminId;
+     * String
      */
     private $modifiedby;
     
     /*
      * Inherited
      */
+    public function __construct() {
+    }
+    
+    /*
+     * Inherited
+     */
+    public function __get($name) {
+        return $this->$name;
+    }
+    
+    /*
+     * Inherited
+     */
+    public function __set($name, $val) {
+        $this->$name = $val;
+    }
+    
+    /*
+     * Inherited
+     */
     public function __toString() {
-        
+        return "$this->memberId, $this->rank, $this->division, $this->statut, $this->dateVersionStatut, "
+            . "$this->dateEnrollment, $this->createdBy, $this->validatedBy, $this->modifiedby";
     }
 }

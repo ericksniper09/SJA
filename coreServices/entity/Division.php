@@ -16,7 +16,7 @@ namespace entity;
 include_once 'BaseEntity.php';
 include_once '../enums/Area.php';
 
-class Division extends BaseEntity {
+class Division implements BaseEntity {
     /*
      * @Not-Null
      * @primary key
@@ -28,15 +28,31 @@ class Division extends BaseEntity {
      * @Enum Area
      */
     private $area;
+    
+    /*
+     * Inherited
+     */
+    public function __construct() {
+    }
+    
+    /*
+     * Inherited
+     */
+    public function __get($name) {
+        return $this->$name;
+    }
+    
+    /*
+     * Inherited
+     */
+    public function __set($name, $val) {
+        $this->$name = $val;
+    }
+    
     /*
      * Inherited
      */
     public function __toString() {
-
+        return "$this->id, $this->area";
     }
-
-    public function __set($name, $val) {
-      $this->$name = $val;
-    }
-
 }

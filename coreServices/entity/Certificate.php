@@ -16,11 +16,12 @@ namespace entity;
 include_once 'BaseEntity.php';
 include_once '../enums/FirstAidLevel.php';
 
-class Certificate extends BaseEntity {
+class Certificate implements BaseEntity {
     
     /*
      * @Not-Null
      * @primary key
+     * Integer
      */
     private $id;
     
@@ -28,16 +29,19 @@ class Certificate extends BaseEntity {
      * @Not-Null
      * @Many-to-one
      * @ForeingKey -> Member Table: memberId;
+      * String
      */
     private $memberId;
     
     /*
      * @Not-Null
+     * Date
      */
     private $dateIssued;
     
     /*
      * @Not-Null
+     * Date
      */
     private $dateExpiry;
     
@@ -46,11 +50,32 @@ class Certificate extends BaseEntity {
      * @Enum FirstAidLevel
      */
     private $level;
+    
+    /*
+     * Inherited
+     */
+    public function __construct() {
+    }
+    
+    /*
+     * Inherited
+     */
+    public function __get($name) {
+        return $this->$name;
+    }
+    
+    /*
+     * Inherited
+     */
+    public function __set($name, $val) {
+        $this->$name = $val;
+    }
+    
     /*
      * Inherited
      */
     public function __toString() {
-        
+        return "$this->memberId, $this->dateIssued, $this->dateExpiry, $this->level";
     }
 
 }
