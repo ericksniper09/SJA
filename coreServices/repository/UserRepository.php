@@ -18,17 +18,16 @@ include_once 'BaseRepository.php';
 include_once '../domain/DbConnection.php';
 
 class UserRepository implements BaseRepository{
-    
+
     public function deleteOne($entity): bool {
-        
+
     }
 
     public function findAll(): iterable {
-        
+
     }
 
     public function findOne($entity): \entity\BaseEntity {
-        
     }
 
     public function save($entity): int {
@@ -36,6 +35,6 @@ class UserRepository implements BaseRepository{
     }
 
     public function saveAll($entity): iterable {
-        
+
     }
 }
