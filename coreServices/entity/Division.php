@@ -22,7 +22,7 @@ class Division extends BaseEntity {
      * @primary key
      */
     private $id;
-    
+
     /*
      * @Not-Null
      * @Enum Area
@@ -32,7 +32,11 @@ class Division extends BaseEntity {
      * Inherited
      */
     public function __toString() {
-        
+
+    }
+
+    public function __set($name, $val) {
+      $this->$name = $val;
     }
 
 }
