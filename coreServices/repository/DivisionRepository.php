@@ -16,6 +16,7 @@ namespace repository;
 
 include_once 'BaseRepository.php';
 include_once '../domain/DbConnection.php';
+include_once '../entity/Division.php';
 
 class DivisionRepository implements BaseRepository{
 
@@ -30,8 +31,8 @@ class DivisionRepository implements BaseRepository{
     public function findOne($entity): \entity\BaseEntity {
         $conn = new \domain\DbConnection();
 
-        $divisionId = $entity->id;
-        $divisionArea = $entity->area;
+       	$divisionId = $entity->id;
+       	$divisionArea = $entity->area;
 
 
         $query = 'select * from sja_division where DIVISION_NAME = "$divisionId" and AREA_NAME = "$divisionArea";';
@@ -62,9 +63,9 @@ class DivisionRepository implements BaseRepository{
     }
 }
 
-$dr = new DivisionRepository();
-$division = new \entity\Division();
-$division->id = "Belle Rose";
-$division->area = "Upper Plaine Wilhems";
 
-echo json_encode($dr->findOne($division));
+$dr = new DivisionRepository();
+$d = new \entity\Division();
+$d->id = "Belle Rose";
+
+var_dump($d);
