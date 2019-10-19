@@ -28,4 +28,19 @@ class DbConnection {
             return $this->$name;
         }
     }
+    
+    public function mysqli_onSuccess(): void {
+        mysqli_commit($this->connection);
+        mysqli_autocommit($this->connection, true);
+    }
+    
+    public function mysqli_onFail(): void {
+        mysqli_rollback($this->connection);
+        mysqli_autocommit($this->connection, true);
+    }
+    
+    public function mysqli_startTransaction(): void {
+        mysqli_begin_transaction();
+        mysqli_autocommit($this->connection, false);
+    }
 }

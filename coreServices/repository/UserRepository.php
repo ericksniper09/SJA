@@ -34,7 +34,7 @@ class UserRepository implements BaseRepository{
         
     }
 
-    public function saveAll($entity): iterable {
+    public function saveAll($entity): int {
 
     }
 }

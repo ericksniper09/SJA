@@ -1,7 +1,7 @@
 -- Sample Data!
 insert into admin_user (USER_NAME, USER_PWD, ACCOUNT_STATUS, DATE_CREATED) values (
-	'ED517',
-	'Er7471447',
+	'root',
+	'er7471447',
 	'Enabled',
 	CURDATE()
 );
