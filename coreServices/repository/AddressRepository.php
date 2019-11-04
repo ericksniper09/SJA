@@ -17,12 +17,15 @@ namespace repository;
 include_once 'BaseRepository.php';
 include_once '../entity/Address.php';
 
+#Mapper
+include_once '../mapper/AddressMapper.php';
+
 class AddressRepository implements BaseRepository {
         
-    public function deleteOne($address): bool {
+    public function deleteOne(\entity\BaseEntity $address): bool {
         $conn = new \domain\DbConnection();
         
-         $query = "select * from sja_address where (ADDRESS_HOUSE_NO = '$address->houseNo' and "
+        $query = "select * from sja_address where (ADDRESS_HOUSE_NO = '$address->houseNo' and "
                 . "ADDRESS_STREET = '$address->street' and ADDRESS_CITY = '$address->city' and "
                 . "ADDRESS_STATE = '$address->state' and ADDRESS_COUNTRY = '$address->country') "
                 . "or ADDRESS_ID = '$address->id';";
@@ -43,6 +46,7 @@ class AddressRepository implements BaseRepository {
 
     public function findAll(): iterable {
         $conn = new \domain\DbConnection();
+        $addressMapper = new \mapper\AddressMapper();
         $addresses = array();
         
         $query = "select * from sja_address;";
@@ -50,24 +54,16 @@ class AddressRepository implements BaseRepository {
                 
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                $address = new \entity\Address();
-                
-                $address->id = $row['ADDRESS_ID'];
-                $address->houseNo = $row['ADDRESS_HOUSE_NO'];
-                $address->street = $row['ADDRESS_STREET'];
-                $address->city = $row['ADDRESS_CITY'];
-                $address->state = $row['ADDRESS_STATE'];
-                $address->country = $row['ADDRESS_COUNTRY'];
-                $address->postalCode = $row['ADDRESS_POSTAL_CODE'];
-                
+                $address = $addressMapper->toAddress($row);                
                 array_push($addresses, $address);
             }
         }
         return $addresses;
     }
 
-    public function findOne($address): \entity\BaseEntity {
+    public function findOne(\entity\BaseEntity $address): \entity\BaseEntity {
         $conn = new \domain\DbConnection();
+        $addressMapper = new \mapper\AddressMapper();
         
         $query = "select * from sja_address where (ADDRESS_HOUSE_NO = '$address->houseNo' and "
                 . "ADDRESS_STREET = '$address->street' and ADDRESS_CITY = '$address->city' and "
@@ -79,19 +75,13 @@ class AddressRepository implements BaseRepository {
         if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
             
-            $address_found->id = $row['ADDRESS_ID'];
-            $address_found->houseNo = $row['ADDRESS_HOUSE_NO'];
-            $address_found->street = $row['ADDRESS_STREET'];
-            $address_found->city = $row['ADDRESS_CITY'];
-            $address_found->state = $row['ADDRESS_STATE'];
-            $address_found->country = $row['ADDRESS_COUNTRY'];
-            $address_found->postalCode = $row['ADDRESS_POSTAL_CODE'];
+            $address_found = $addressMapper->toAddress($row);
         }
         
         return $address_found;
     }
 
-    public function save($address): int {
+    public function save(\entity\BaseEntity $address): int {
         $conn = new \domain\DbConnection();
         
         $query = "select * from sja_address where ADDRESS_HOUSE_NO = '$address->houseNo' and "
@@ -143,5 +133,16 @@ class AddressRepository implements BaseRepository {
         $conn->mysqli_onSuccess();
         mysqli_close($conn->connection);
         return 1;     
+    }
+    
+    public function findById(int $addressId): ?\entity\BaseEntity {
+        $conn = new \domain\DbConnection();
+        $addressMapper = new \mapper\AddressMapper();
+        
+        $query = "select * from sja_address where ADDRESS_ID = '$addressId';";
+        $result = mysqli_query($conn->connection, $query);
+        
+        return mysqli_num_rows($result) == 1 ? 
+            $addressMapper->toAddress(mysqli_fetch_assoc($result)) : null;
     }
 }

@@ -23,7 +23,7 @@ interface BaseRepository {
      * @method void save(\entity\BaseEntity $AnyEntity) return int;
      * Save Entity to Table
      */
-    public function save($entity): int;
+    public function save(\entity\BaseEntity $entity): int;
     
      /*
      * @method void saveAll(\entity\BaseEntity[] $AnyEntity) return int;
@@ -35,7 +35,7 @@ interface BaseRepository {
      * @method void findOne(\entity\BaseEntity $AnyEntity) return \entity\BaseEntity;
      * Find specific entity from table
      */
-    public function findOne($entity): \entity\BaseEntity;
+    public function findOne(\entity\BaseEntity $entity): \entity\BaseEntity;
     
     /*
      * @method void findAll(\entity\BaseEntity[] $AnyEntity) return \entity\BaseEntity[];
@@ -47,5 +47,5 @@ interface BaseRepository {
      * @method void delete(\entity\BaseEntity $AnyEntity) return boolean;
      * delete one entity from table
      */
-    public function deleteOne($entity): bool;
+    public function deleteOne(\entity\BaseEntity $entity): bool;
 }

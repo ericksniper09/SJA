@@ -13,6 +13,7 @@ namespace entity;
  * @author ericd
  */
 
+
 include_once 'BaseEntity.php';
 include_once 'Member.php';
 
@@ -36,7 +37,7 @@ class User implements BaseEntity {
      * @One-to-one
      * @ForeingKey -> Member Table: memberId;
      */
-    private $memberId;
+    private $member;
     
     /*
      * @Not-Null
@@ -58,7 +59,7 @@ class User implements BaseEntity {
     /*
      * Inherited
      */
-    public function __construct() {
+    public function __construct() {        
     }
     
     /*
@@ -79,7 +80,8 @@ class User implements BaseEntity {
      * Inherited
      */
     public function __toString() {
-        return "$this->id, $this->pwd, $this->memberId, $this->accountStatus, $this->dateCreated, $this->createdBy";
+        $password = password_hash($this->pwd, PASSWORD_DEFAULT);
+        return "$this->id, $password, $this->member, $this->accountStatus, $this->dateCreated, $this->createdBy";
     }
 
 }

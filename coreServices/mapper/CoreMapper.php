@@ -6,10 +6,12 @@
  * and open the template in the editor.
  */
 
+namespace mapper;
 /**
  *
  * @author ericd
  */
+
 interface CoreMapper {
     //put your code here
 }

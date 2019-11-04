@@ -1,5 +1,5 @@
 <?php
-require_once "coreServices/entity/class_user.php";
+include_once "coreServices/entity/class_user.php";
 #Session Management 
 #Timestamp->30 minutes
 if (isset($_SESSION['logged_user'])) {
@@ -67,7 +67,7 @@ if (isset($_SESSION['logged_user'])) {
     <div class="card text-white bg-dark loginCard animated flipInY">
         <h5 class="card-header" style="font-size: 32px"><img src="resources/The-Amalfi-Cross.jpg" alt="Amalfi Cross" class="rounded-circle logo-small animated rollIn" width="40"><i class="fas fa-sign-in-alt"></i>&nbsp;Sign In</h5>
         <div class="card-body">
-            <form method="POST" action="includes/controller.php?f=login">
+            <form method="POST" action=""> <!-- coreServices/domain/controller.php?f=login -->
                 <div class="form-group">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">

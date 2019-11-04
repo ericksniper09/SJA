@@ -10,7 +10,7 @@
  * FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-require_once "DbConnection.php";
+include_once "../domain/DbConnection.php";
 session_start();
 
 
@@ -91,7 +91,7 @@ class User
     #Login Method
     public function login()
     {
-        $conn = new DbConnection();
+        $conn = new \domain\DbConnectionon();
         $sql = "SELECT admin_user.user_id, admin_user.user_pwd, admin_user.firstTime, sja_member.member_firstname, sja_member.member_lastname, sja_division.division_id, sja_division.division_name, sja_rank.rank_id, sja_rank.rank_name, admin_user.account_status, sja_division.area_id, sja_area.area_name FROM admin_user INNER JOIN sja_member ON admin_user.member_id = sja_member.member_id INNER JOIN sja_division ON sja_member.member_division = sja_division.division_id INNER JOIN sja_rank ON permission = sja_rank.rank_id INNER JOIN sja_area ON sja_division.area_id = sja_area.area_id WHERE admin_user.user_id = '$this->username';";
 
         $result = mysqli_query($conn->connection, $sql);

@@ -67,7 +67,7 @@ class Member implements BaseEntity {
     
     /*
      * @Not-Null
-     * @One-to-one
+     * @many-to-one
      * @ForeingKey -> Address Table: addressId;
      */
     private $address;

@@ -32,7 +32,7 @@ include_once '../enums/Area.php';
 
 class DivisionRepository implements BaseRepository{
 
-    public function deleteOne($division): bool {
+    public function deleteOne(\entity\BaseEntity $division): bool {
         $conn = new \domain\DbConnection();
         
         $query = "select * from sja_division where DIVISION_NAME = '$division->id';";
@@ -70,7 +70,7 @@ class DivisionRepository implements BaseRepository{
         return $divisions;
     }
 
-    public function findOne($division): \entity\BaseEntity {
+    public function findOne(\entity\BaseEntity $division): \entity\BaseEntity {
 	$conn = new \domain\DbConnection();
         $myDivision = new \entity\Division();
         
@@ -88,7 +88,7 @@ class DivisionRepository implements BaseRepository{
         return $myDivision;
     }
 
-    public function save($division): int {
+    public function save(\entity\BaseEntity $division): int {
         $conn = new \domain\DbConnection();
         
         $query = "select * from sja_division where DIVISION_NAME = '$division->id';";
