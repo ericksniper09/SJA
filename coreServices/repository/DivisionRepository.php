@@ -27,6 +27,9 @@ namespace repository;
 include_once 'BaseRepository.php';
 include_once '../entity/Division.php';
 
+#Mapper
+include_once '../mapper/DivisionMapper.php';
+
 #Enums
 include_once '../enums/Area.php';
 
@@ -38,7 +41,7 @@ class DivisionRepository implements BaseRepository{
         $query = "select * from sja_division where DIVISION_NAME = '$division->id';";
         $result = mysqli_query($conn->connection, $query);
                
-        if (mysqli_num_rows($result) == 1) { #Create new
+        if (mysqli_num_rows($result) == 1) { #Division Found
             $query = "delete from sja_division where DIVISION_NAME = '$division->id';";
             
             $result = mysqli_query($conn->connection, $query);
@@ -54,37 +57,34 @@ class DivisionRepository implements BaseRepository{
     public function findAll(): iterable {
         $conn = new \domain\DbConnection();
         $divisions = array();
+        $divisionMapper = new \mapper\DivisionMapper();
         
         $query = "select * from sja_division;";
         $result = mysqli_query($conn->connection, $query);
         
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                $division = new \entity\Division();            
-                $division->id = $row['DIVISION_NAME'];
-                $division->area = $row['AREA_NAME'];
-                
+                $division = $divisionMapper->toDivision($row);
                 array_push($divisions, $division);
             }   
         }
+        \mysqli_close($conn->connection);
         return $divisions;
     }
 
     public function findOne(\entity\BaseEntity $division): \entity\BaseEntity {
 	$conn = new \domain\DbConnection();
         $myDivision = new \entity\Division();
+        $divisionMapper = new \mapper\DivisionMapper();
         
         $query = "select * from sja_division where DIVISION_NAME = '$division->id';";
         $result = mysqli_query($conn->connection, $query);
         
         if (mysqli_num_rows($result) == 1) {
-            $row = mysqli_fetch_assoc($result);
-                      
-            $myDivision->id = $row['DIVISION_NAME'];
-            $myDivision->area = $row['AREA_NAME'];
+            $myDivision = $divisionMapper->toDivision(mysqli_fetch_assoc($result));
         }
-        
-        mysqli_close($conn->connection);
+
+        \mysqli_close($conn->connection);
         return $myDivision;
     }
 
@@ -98,11 +98,11 @@ class DivisionRepository implements BaseRepository{
             $query = "insert into sja_division values ('$division->id', '$division->area');";
             
             $result = mysqli_query($conn->connection, $query);
-            mysqli_close($conn->connection);
+            \mysqli_close($conn->connection);
             return $result == 1 ? $this->findOne($division)->id : 0;
         }
             
-        mysqli_close($conn->connection);
+        \mysqli_close($conn->connection);
         return -1;
     }
 
@@ -119,14 +119,25 @@ class DivisionRepository implements BaseRepository{
                 $result = mysqli_query($conn->connection, $query);   
             } else if (mysqli_num_rows($result) == 1) {
                 $conn->mysqli_onFail();
-                mysqli_close($conn->connection);
+                \mysqli_close($conn->connection);
                 return -1;
             }
         }
         
         $conn->mysqli_onSuccess();
-        mysqli_close($conn->connection); 
+        \mysqli_close($conn->connection); 
         return 1; #Succesful;
     }
     
+    public function findById($divisionId): ?\entity\BaseEntity {
+        $conn = new \domain\DbConnection();
+        $divisionMapper = new \mapper\DivisionMapper();
+        
+        $query = "select * from sja_division where DIVISION_NAME = '$divisionId';";
+        $result = mysqli_query($conn->connection, $query);
+        
+        \mysqli_close($conn->connection);
+        return mysqli_num_rows($result) == 1 ? 
+            $divisionMapper->toDivision(mysqli_fetch_assoc($result)) : null;
+    }
 }

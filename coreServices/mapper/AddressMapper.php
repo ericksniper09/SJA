@@ -19,7 +19,7 @@ include_once '../entity/Address.php';
 
 class AddressMapper implements CoreMapper {
    
-    public function toAddress($row): \entity\BaseEntity {
+    public static function toAddress($row): \entity\BaseEntity {
         $address = new \entity\Address();
                 
         $address->id = $row['ADDRESS_ID'];

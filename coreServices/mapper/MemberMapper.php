@@ -19,7 +19,7 @@ include_once '../entity/Member.php';
 
 class MemberMapper implements CoreMapper {
     
-    public function toMember($row): \entity\Member {
+    public static function toMember($row): \entity\Member {
         $member = new \entity\Member();
         
         $member->id = $row['MEMBER_NIC'];

@@ -19,7 +19,7 @@ include_once '../entity/User.php';
 
 class UserMapper implements CoreMapper{
    
-    public function toUser($row): \entity\BaseEntity {
+    public static function toUser($row): \entity\BaseEntity {
         $user = new \entity\User();
         
         $user->id = $row['USER_NAME'];

@@ -23,9 +23,25 @@ include_once 'UserRepository.php';
 include_once '../mapper/MemberMapper.php';
 
 class MemberRepository implements BaseRepository{
-   
+    
+    private $conn;
+    private $memberMapper;
+    private $addressRepository;
+    private $userRepository;
+    
+    public function __construct() {
+        $this->conn = new \domain\DbConnection();
+        $this->memberMapper = new \mapper\MemberMapper();
+        $this->addressRepository = new \repository\AddressRepository();
+        $this->userRepository = new \repository\UserRepository();
+    }
+       
     public function deleteOne(\entity\BaseEntity $entity): bool {
-        
+        /**
+         * Method not to Be Implemented!
+         * Members Once in DB will not be Deleted!
+         */
+        return false;
     }
 
     public function findAll(): iterable {
@@ -33,37 +49,31 @@ class MemberRepository implements BaseRepository{
     }
 
     public function findOne(\entity\BaseEntity $member): \entity\BaseEntity {
-        $conn = new \domain\DbConnection();
         $member_new = new \entity\Member;
-        $addressRepository = new AddressRepository();
-        $memberMapper = new \mapper\MemberMapper();
         
         $query = "select * from sja_member where MEMBER_NIC = '$member->id' or ("
                 . "MEMBER_FIRST_NAME = '$member->firstname' and "
                 . "MEMBER_LAST_NAME = '$member->lastname' and MEMBER_DOB = '$member->dob');";
         
-        $result = mysqli_query($conn->connection, $query);
+        $result = mysqli_query($this->conn->connection, $query);
         if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
             
-            $member_new = $memberMapper->toMember($row);
+            $member_new = $this->memberMapper->toMember($row);
             
-            $address = $addressRepository->findById($row['MEMBER_ADDRESS']);
+            $address = $this->addressRepository->findById($row['MEMBER_ADDRESS']);
             $member_new->address = $address;
         }
         
-        mysqli_close($conn->connection);
+        mysqli_close($this->conn->connection);
         return $member_new;
     }
 
     public function save(\entity\BaseEntity $member): int {
-        $conn = new \domain\DbConnection();
-        $addressRepository = new AddressRepository();
-        $userRepository = new UserRepository();
         
         $existing_member = $this->findById($member->id);
-        $user = $userRepository->findById($member->createdBy);
-        $address = $addressRepository->findById($member->address);
+        $user = $this->userRepository->findById($member->createdBy);
+        $address = $this->addressRepository->findById($member->address);
         
         $result = -1;
         if ($existing_member == null && $user != null && $address != null) {
@@ -73,10 +83,10 @@ class MemberRepository implements BaseRepository{
                     . "'$member->dob', '$member->email', '$member->homePhone', '$member->mobilePhone', "
                     . "'$member->address', '$member->gender', '$member->image', '$member->occupation', "
                     . "'$member->dateJoined', '$member->createdBy');";
-            $result = mysqli_query($conn->connection, $query);
+            $result = mysqli_query($this->conn->connection, $query);
         }        
         
-        mysqli_close($conn->connection);
+        mysqli_close($this->conn->connection);
         return $result;
     }
 
@@ -84,25 +94,19 @@ class MemberRepository implements BaseRepository{
         
     }
     
-    public function findById($memberId): ?\entity\BaseEntity {
-        $conn = new \domain\DbConnection();
-        $addressRepository = new AddressRepository();
-        $memberMapper = new \mapper\MemberMapper();
-        
+    public function findById($memberId): ?\entity\BaseEntity {        
         $query = "select * from sja_member where MEMBER_NIC = '$memberId';";
-        $result = mysqli_query($conn->connection, $query);
+        $result = mysqli_query($this->conn->connection, $query);
         
         $member = null;
         if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
             
-            $member = $memberMapper->toMember($row);
-            
-            $address = $addressRepository->findById($row['MEMBER_ADDRESS']);
-            $member->address = $address;
+            $member = $this->memberMapper->toMember($row);         
+            $member->address = $this->addressRepository->findById($row['MEMBER_ADDRESS']);
         }
         
-        mysqli_close($conn->connection);
+        mysqli_close($this->conn->connection);
         return $member;
     }
 }
@@ -125,6 +129,6 @@ $m->occupation = \enumerations\Occupation::OCC_EMPLOYED;
 $m->dateJoined = '2019-4-1';
 $m->createdBy = 'root';
 
-echo $mr->save($m);
+echo $mr->findById("342adsfasafr3a");
 
 
