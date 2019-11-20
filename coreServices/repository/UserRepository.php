@@ -28,9 +28,14 @@ include_once '../entity/User.php';
 include_once '../mapper/UserMapper.php';
 
 class UserRepository implements BaseRepository{
-    
+
+    #MySQL Connection Object
     private $conn;
+
+    #MemberRepository Object
     private $memberRepository;
+
+    #UserMapper Object
     private $userMapper;
     
     public function __construct() {

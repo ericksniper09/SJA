@@ -8,6 +8,11 @@
 
 namespace repository;
 
+use domain\DbConnection;
+use entity\BaseEntity;
+use entity\Member;
+use mapper\MemberMapper;
+
 /**
  * Description of MemberRepository
  *
@@ -23,20 +28,27 @@ include_once 'UserRepository.php';
 include_once '../mapper/MemberMapper.php';
 
 class MemberRepository implements BaseRepository{
-    
+
+    #MySQL Connection Object
     private $conn;
+
+    #MemberMapper Object
     private $memberMapper;
+
+    #AddressRepository Object
     private $addressRepository;
+
+    #UserRepository Object
     private $userRepository;
     
     public function __construct() {
-        $this->conn = new \domain\DbConnection();
-        $this->memberMapper = new \mapper\MemberMapper();
-        $this->addressRepository = new \repository\AddressRepository();
-        $this->userRepository = new \repository\UserRepository();
+        $this->conn = new DbConnection();
+        $this->memberMapper = new MemberMapper();
+        $this->addressRepository = new AddressRepository();
+        $this->userRepository = new UserRepository();
     }
        
-    public function deleteOne(\entity\BaseEntity $entity): bool {
+    public function deleteOne(BaseEntity $entity): bool {
         /**
          * Method not to Be Implemented!
          * Members Once in DB will not be Deleted!
@@ -48,8 +60,8 @@ class MemberRepository implements BaseRepository{
         
     }
 
-    public function findOne(\entity\BaseEntity $member): \entity\BaseEntity {
-        $member_new = new \entity\Member;
+    public function findOne(BaseEntity $member): BaseEntity {
+        $member_new = new Member;
         
         $query = "select * from sja_member where MEMBER_NIC = '$member->id' or ("
                 . "MEMBER_FIRST_NAME = '$member->firstname' and "
@@ -64,16 +76,18 @@ class MemberRepository implements BaseRepository{
             $address = $this->addressRepository->findById($row['MEMBER_ADDRESS']);
             $member_new->address = $address;
         }
-        
+
         mysqli_close($this->conn->connection);
         return $member_new;
     }
 
-    public function save(\entity\BaseEntity $member): int {
+    public function save(BaseEntity $member): int {
         
         $existing_member = $this->findById($member->id);
         $user = $this->userRepository->findById($member->createdBy);
         $address = $this->addressRepository->findById($member->address);
+
+        #TODO: SAVE ADDRESS BY ENTITY
         
         $result = -1;
         if ($existing_member == null && $user != null && $address != null) {
@@ -94,7 +108,7 @@ class MemberRepository implements BaseRepository{
         
     }
     
-    public function findById($memberId): ?\entity\BaseEntity {        
+    public function findById($memberId): ?BaseEntity {
         $query = "select * from sja_member where MEMBER_NIC = '$memberId';";
         $result = mysqli_query($this->conn->connection, $query);
         
@@ -111,8 +125,7 @@ class MemberRepository implements BaseRepository{
     }
 }
 
-$mr = new MemberRepository();
-$m = new \entity\Member();
+$m = new Member();
 
 $m->id = "342adsfasafr3a";
 $m->firstname = "afasdfadsf";
@@ -129,6 +142,6 @@ $m->occupation = \enumerations\Occupation::OCC_EMPLOYED;
 $m->dateJoined = '2019-4-1';
 $m->createdBy = 'root';
 
-echo $mr->findById("342adsfasafr3a");
+echo $m;
 
 

@@ -18,6 +18,11 @@
 
 namespace repository;
 
+use domain\DbConnection;
+use entity\BaseEntity;
+use entity\Division;
+use mapper\DivisionMapper;
+
 /**
  * Description of DivisionRepository
  *
@@ -35,109 +40,108 @@ include_once '../enums/Area.php';
 
 class DivisionRepository implements BaseRepository{
 
-    public function deleteOne(\entity\BaseEntity $division): bool {
-        $conn = new \domain\DbConnection();
-        
+    #MySQL Connection Object
+    private $conn;
+
+    #DivisionMapper Object
+    private $divisionMapper;
+
+    public function __construct() {
+        $this->conn = new DbConnection();
+        $this->divisionMapper = new DivisionMapper();
+    }
+
+    public function deleteOne(BaseEntity $division): bool {
         $query = "select * from sja_division where DIVISION_NAME = '$division->id';";
-        $result = mysqli_query($conn->connection, $query);
+        $result = mysqli_query($this->conn->connection, $query);
                
         if (mysqli_num_rows($result) == 1) { #Division Found
             $query = "delete from sja_division where DIVISION_NAME = '$division->id';";
             
-            $result = mysqli_query($conn->connection, $query);
-            mysqli_close($conn->connection);
+            $result = mysqli_query($this->conn->connection, $query);
+            mysqli_close($this->conn->connection);
             
             return $result == 1 ? true : false;
         }
             
-        mysqli_close($conn->connection);
+        mysqli_close($this->conn->connection);
         return false;
     }
 
     public function findAll(): iterable {
-        $conn = new \domain\DbConnection();
         $divisions = array();
-        $divisionMapper = new \mapper\DivisionMapper();
         
         $query = "select * from sja_division;";
-        $result = mysqli_query($conn->connection, $query);
+        $result = mysqli_query($this->conn->connection, $query);
         
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                $division = $divisionMapper->toDivision($row);
+                $division = $this->divisionMapper->toDivision($row);
                 array_push($divisions, $division);
             }   
         }
-        \mysqli_close($conn->connection);
+        mysqli_close($this->conn->connection);
         return $divisions;
     }
 
-    public function findOne(\entity\BaseEntity $division): \entity\BaseEntity {
-	$conn = new \domain\DbConnection();
-        $myDivision = new \entity\Division();
-        $divisionMapper = new \mapper\DivisionMapper();
+    public function findOne(BaseEntity $division): BaseEntity {
+        $myDivision = new Division();
         
         $query = "select * from sja_division where DIVISION_NAME = '$division->id';";
-        $result = mysqli_query($conn->connection, $query);
+        $result = mysqli_query($this->conn->connection, $query);
         
         if (mysqli_num_rows($result) == 1) {
-            $myDivision = $divisionMapper->toDivision(mysqli_fetch_assoc($result));
+            $myDivision = $this->divisionMapper->toDivision(mysqli_fetch_assoc($result));
         }
 
-        \mysqli_close($conn->connection);
+        mysqli_close($this->conn->connection);
         return $myDivision;
     }
 
-    public function save(\entity\BaseEntity $division): int {
-        $conn = new \domain\DbConnection();
-        
+    public function save(BaseEntity $division): int {
         $query = "select * from sja_division where DIVISION_NAME = '$division->id';";
-        $result = mysqli_query($conn->connection, $query);
+        $result = mysqli_query($this->conn->connection, $query);
                
         if (mysqli_num_rows($result) == 0) { #Create new
             $query = "insert into sja_division values ('$division->id', '$division->area');";
             
-            $result = mysqli_query($conn->connection, $query);
-            \mysqli_close($conn->connection);
+            $result = mysqli_query($this->conn->connection, $query);
+            mysqli_close($this->conn->connection);
             return $result == 1 ? $this->findOne($division)->id : 0;
         }
             
-        \mysqli_close($conn->connection);
+        mysqli_close($this->conn->connection);
         return -1;
     }
 
     public function saveAll($divisions): int {
-        $conn = new \domain\DbConnection();
-        $conn->mysqli_startTransaction();
+        $this->conn->mysqli_startTransaction();
         
         foreach ($divisions as $division) {
             $query = "select * from sja_division where DIVISION_NAME = '$division->id';";
-            $result = mysqli_query($conn->connection, $query);
+            $result = mysqli_query($this->conn->connection, $query);
             
             if (mysqli_num_rows($result) == 0) {
                 $query = "insert into sja_division values ('$division->id', '$division->area');";
-                $result = mysqli_query($conn->connection, $query);   
+                $result = mysqli_query($this->conn->connection, $query);
             } else if (mysqli_num_rows($result) == 1) {
-                $conn->mysqli_onFail();
-                \mysqli_close($conn->connection);
+                $this->conn->mysqli_onFail();
+                mysqli_close($this->conn->connection);
                 return -1;
             }
         }
         
-        $conn->mysqli_onSuccess();
-        \mysqli_close($conn->connection); 
+        $this->conn->mysqli_onSuccess();
+        mysqli_close($this->conn->connection);
         return 1; #Succesful;
     }
     
-    public function findById($divisionId): ?\entity\BaseEntity {
-        $conn = new \domain\DbConnection();
-        $divisionMapper = new \mapper\DivisionMapper();
-        
+    public function findById($divisionId): ?BaseEntity {
         $query = "select * from sja_division where DIVISION_NAME = '$divisionId';";
-        $result = mysqli_query($conn->connection, $query);
+        $result = mysqli_query($this->conn->connection, $query);
         
-        \mysqli_close($conn->connection);
+        mysqli_close($this->conn->connection);
         return mysqli_num_rows($result) == 1 ? 
-            $divisionMapper->toDivision(mysqli_fetch_assoc($result)) : null;
+            $this->divisionMapper->toDivision(mysqli_fetch_assoc($result)) : null;
     }
 }
