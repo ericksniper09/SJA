@@ -145,3 +145,4 @@ class DivisionRepository implements BaseRepository{
             $this->divisionMapper->toDivision(mysqli_fetch_assoc($result)) : null;
     }
 }
+echo "OK:";

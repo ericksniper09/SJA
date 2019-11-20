@@ -150,3 +150,4 @@ class AddressRepository implements BaseRepository {
             $this->addressMapper->toAddress(mysqli_fetch_assoc($result)) : null;
     }
 }
+echo "OK:";
