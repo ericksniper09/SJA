@@ -8,6 +8,11 @@
 
 namespace repository;
 
+use domain\DbConnection;
+use entity\BaseEntity;
+use entity\User;
+use mapper\UserMapper;
+
 /**
  * Description of UserRepository
  *
@@ -29,12 +34,12 @@ class UserRepository implements BaseRepository{
     private $userMapper;
     
     public function __construct() {
-        $this->conn = new \domain\DbConnection();
-        $this->memberRepository = new \repository\MemberRepository();
-        $this->userMapper = new \mapper\UserMapper();
+        $this->conn = new DbConnection();
+        $this->memberRepository = new MemberRepository();
+        $this->userMapper = new UserMapper();
     }
 
-    public function deleteOne(\entity\BaseEntity $entity): bool {
+    public function deleteOne(BaseEntity $entity): bool {
 
     }
 
@@ -42,14 +47,14 @@ class UserRepository implements BaseRepository{
 
     }
 
-    public function findOne(\entity\BaseEntity $user): \entity\BaseEntity {
+    public function findOne(BaseEntity $user): BaseEntity {
         $member = $user->member;
         
         $query = "select * from admin_user where USER_NAME = '$user->id' or "
                 . "MEMBER_ID = '$member->id' limit 1;";
         $result = mysqli_query($this->conn->connection, $query);
         
-        $userSearch = new \entity\User();
+        $userSearch = new User();
         if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
             
@@ -63,7 +68,7 @@ class UserRepository implements BaseRepository{
         return $userSearch;
     }
 
-    public function save(\entity\BaseEntity $entity): int {
+    public function save(BaseEntity $entity): int {
         
     }
 
@@ -71,7 +76,7 @@ class UserRepository implements BaseRepository{
 
     }
     
-    public function findById(string $userId): ?\entity\BaseEntity {
+    public function findById(string $userId): ?BaseEntity {
         $query = "select * from admin_user where USER_NAME = '$userId';";
         $result = mysqli_query($this->conn->connection, $query);
         
@@ -85,7 +90,7 @@ class UserRepository implements BaseRepository{
                 $this->memberRepository->findById($row['MEMBER_ID']) : null;
         }
         
-        mysqli_close($conn->connection);
+        mysqli_close($this->conn->connection);
         return $user;
     }
 }
