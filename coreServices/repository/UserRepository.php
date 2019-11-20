@@ -23,6 +23,16 @@ include_once '../entity/User.php';
 include_once '../mapper/UserMapper.php';
 
 class UserRepository implements BaseRepository{
+    
+    private $conn;
+    private $memberRepository;
+    private $userMapper;
+    
+    public function __construct() {
+        $this->conn = new \domain\DbConnection();
+        $this->memberRepository = new \repository\MemberRepository();
+        $this->userMapper = new \mapper\UserMapper();
+    }
 
     public function deleteOne(\entity\BaseEntity $entity): bool {
 
@@ -33,27 +43,23 @@ class UserRepository implements BaseRepository{
     }
 
     public function findOne(\entity\BaseEntity $user): \entity\BaseEntity {
-        $conn = new \domain\DbConnection();
-        $memberRepo = new MemberRepository();
-        $userMapper = new \mapper\UserMapper();
-        #$member = $user->member;
+        $member = $user->member;
         
         $query = "select * from admin_user where USER_NAME = '$user->id' or "
                 . "MEMBER_ID = '$member->id' limit 1;";
-        $result = mysqli_query($conn->connection, $query);
+        $result = \mysqli_query($this->conn->connection, $query);
         
-        $user = new \entity\User();
+        $userSearch = new \entity\User();
         if (mysqli_num_rows($result) == 1) {
-            $row = mysqli_fetch_assoc($result);
+            $row = \mysqli_fetch_assoc($result);
             
-            $user = $userMapper->toUser($row);
-            
-            $user->member = $row['MEMBER_ID'] != null ?
-                $memberRepo->findById($row['MEMBER_ID']) : null;
+            $userSearch = $this->userMapper->toUser($row);
+            $userSearch->member = $row['MEMBER_ID'] != null ?
+                $this->memberRepository->findById($row['MEMBER_ID']) : null;
         }
         
-        mysqli_close($conn->connection);
-        return $user;
+        \mysqli_close($this->conn->connection);
+        return $userSearch;
     }
 
     public function save(\entity\BaseEntity $entity): int {
@@ -65,24 +71,19 @@ class UserRepository implements BaseRepository{
     }
     
     public function findById(string $userId): ?\entity\BaseEntity {
-        $conn = new \domain\DbConnection();
-        $memberRepo = new MemberRepository();
-        $userMapper = new \mapper\UserMapper();
-        
         $query = "select * from admin_user where USER_NAME = '$userId';";
-        $result = mysqli_query($conn->connection, $query);
+        $result = \mysqli_query($this->conn->connection, $query);
         
         $user = null;
         if (mysqli_num_rows($result) == 1) {
-            $row = mysqli_fetch_assoc($result);
+            $row = \mysqli_fetch_assoc($result);
             
-            $user = $userMapper->toUser($row);
-            
+            $user = $this->userMapper->toUser($row);
             $user->member = $row['MEMBER_ID'] != null ?
-                $memberRepo->findById($row['MEMBER_ID']) : null;
+                $this->memberRepository->findById($row['MEMBER_ID']) : null;
         }
         
-        mysqli_close($conn->connection);
+        \mysqli_close($this->conn->connection);
         return $user;
     }
 }
