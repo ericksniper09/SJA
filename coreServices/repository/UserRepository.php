@@ -47,18 +47,19 @@ class UserRepository implements BaseRepository{
         
         $query = "select * from admin_user where USER_NAME = '$user->id' or "
                 . "MEMBER_ID = '$member->id' limit 1;";
-        $result = \mysqli_query($this->conn->connection, $query);
+        $result = mysqli_query($this->conn->connection, $query);
         
         $userSearch = new \entity\User();
         if (mysqli_num_rows($result) == 1) {
-            $row = \mysqli_fetch_assoc($result);
+            $row = mysqli_fetch_assoc($result);
             
             $userSearch = $this->userMapper->toUser($row);
+            
             $userSearch->member = $row['MEMBER_ID'] != null ?
                 $this->memberRepository->findById($row['MEMBER_ID']) : null;
         }
         
-        \mysqli_close($this->conn->connection);
+        mysqli_close($this->conn->connection);
         return $userSearch;
     }
 
@@ -72,18 +73,21 @@ class UserRepository implements BaseRepository{
     
     public function findById(string $userId): ?\entity\BaseEntity {
         $query = "select * from admin_user where USER_NAME = '$userId';";
-        $result = \mysqli_query($this->conn->connection, $query);
+        $result = mysqli_query($this->conn->connection, $query);
         
         $user = null;
         if (mysqli_num_rows($result) == 1) {
-            $row = \mysqli_fetch_assoc($result);
+            $row = mysqli_fetch_assoc($result);
             
             $user = $this->userMapper->toUser($row);
+            
             $user->member = $row['MEMBER_ID'] != null ?
                 $this->memberRepository->findById($row['MEMBER_ID']) : null;
         }
         
-        \mysqli_close($this->conn->connection);
+        mysqli_close($conn->connection);
         return $user;
     }
 }
+
+echo 2;

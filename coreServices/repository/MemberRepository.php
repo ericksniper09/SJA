@@ -111,24 +111,4 @@ class MemberRepository implements BaseRepository{
     }
 }
 
-$mr = new MemberRepository();
-$m = new \entity\Member();
-
-$m->id = "342adsfasafr3a";
-$m->firstname = "afasdfadsf";
-$m->middlename = "sdafd";
-$m->maidenName = 'sdfadfaadsfa';
-$m->lastname = "adsfadsfa";
-$m->dob = '2019-10-2';
-$m->email = "adsfa@sdasd.com";
-$m->homePhone = '1222341';
-$m->mobilePhone = "1231242";
-$m->address = 1;
-$m->gender = \enumerations\Gender::SEX_M;
-$m->occupation = \enumerations\Occupation::OCC_EMPLOYED;
-$m->dateJoined = '2019-4-1';
-$m->createdBy = 'root';
-
-echo $mr->findById("342adsfasafr3a");
-
-
+echo 1;
